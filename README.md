@@ -1,6 +1,6 @@
 # SimpleRetrofileAndSaveRestoreActivityState
 
-![alt tag](https://github.com/rakjang007/SimpleRetrofileAndSaveRestoreActivityState/blob/master/ezgif.com-resize.gif)
+![alt tag](https://github.com/rakjang007/SimpleRetrofileAndSaveRestoreActivityState/blob/master/screenshot/screen_shot1.gif)
 
 
 เป็นโปรเจ็คศึกษาการใช้งาน Retrofit และการ save/restore activity state ไปพร้อมๆกัน
