@@ -26,13 +26,15 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     public static final String KEY_USER = "KEY_USER";
 
-    LinearLayout layoutForm;
-    LinearLayout layoutProgress;
-    LinearLayout layoutResult;
-    EditText edUsername;
-    Button btOk;
-    TextView tvResult;
+    //view
+    private LinearLayout layoutForm;
+    private LinearLayout layoutProgress;
+    private LinearLayout layoutResult;
+    private EditText edUsername;
+    private Button btOk;
+    private TextView tvResult;
 
+    //Dao
     private User user;
 
     onNetworkCallbackListener  networkCallbackListener = new onNetworkCallbackListener() {
