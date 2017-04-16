@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initInstant();
+        initInstance();
 
         if (savedInstanceState == null){// first running
             showForm();
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         layoutProgress.setVisibility(View.VISIBLE);
     }
 
-    private void initInstant() {
+    private void initInstance() {
         layoutForm = (LinearLayout) findViewById(R.id.layoutForm);
         edUsername = (EditText) findViewById(R.id.edUsername);
         btOk = (Button) findViewById(R.id.btOk);
