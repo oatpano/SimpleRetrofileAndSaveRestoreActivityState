@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout layoutResult;
     private EditText edUsername;
     private Button btOk;
+    private Button btClose;
     private TextView tvResult;
 
     //Dao
@@ -77,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             callServer();
+        }
+    };
+
+    View.OnClickListener onBtCloseClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            showForm();
         }
     };
 
@@ -149,8 +157,10 @@ public class MainActivity extends AppCompatActivity {
 
         layoutResult = findViewById(R.id.layoutResult);
         tvResult = findViewById(R.id.tvResult);
+        btClose = findViewById(R.id.btClose);
 
         btOk.setOnClickListener(onBtOkClickListener);
+        btClose.setOnClickListener(onBtCloseClickListener);
     }
 
     @Override

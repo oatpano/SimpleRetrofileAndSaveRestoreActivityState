@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TestRetrofit</string>
+    <string name="loading">Loading...</string>
+    <string name="result">Result</string>
+    <string name="data_uncompleted">Data uncompleted</string>
+    <string name="close">Close</string>
+    <string name="send">Send</string>
+    <string name="github_username">Github username</string>
 </resources>

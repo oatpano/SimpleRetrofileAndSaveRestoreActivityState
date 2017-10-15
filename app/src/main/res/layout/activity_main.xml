@@ -11,28 +11,28 @@
 
     <ibs.ctdm.testretrofit.customview.MyLinearLayout
         android:id="@+id/layoutForm"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:gravity="center"
+        android:orientation="vertical"
         android:visibility="visible">
 
         <EditText
             android:id="@+id/edUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Github username"
             android:gravity="center"
+            android:hint="@string/github_username"
             android:singleLine="true" />
 
         <Button
             android:id="@+id/btOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send"/>
+            android:text="@string/send" />
 
     </ibs.ctdm.testretrofit.customview.MyLinearLayout>
 
@@ -40,26 +40,24 @@
         android:id="@+id/layoutProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_centerInParent="true"
         android:gravity="center"
+        android:orientation="horizontal"
         android:visibility="gone">
-
 
         <ProgressBar
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
 
         <ibs.ctdm.testretrofit.customview.MyLevelTextView
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading..."
-            android:textSize="40sp"
+            android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:freezesText="true" />
+            android:freezesText="true"
+            android:text="@string/loading"
+            android:textSize="40sp" />
 
     </ibs.ctdm.testretrofit.customview.MyLinearLayout>
 
@@ -67,32 +65,39 @@
         android:id="@+id/layoutResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_centerInParent="true"
+        android:orientation="vertical"
         android:visibility="gone">
 
         <ibs.ctdm.testretrofit.customview.MyLevelTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Result"
-            android:textSize="40sp"
-            android:gravity="center"
-            android:textColor="@android:color/white"
             android:background="@color/material_deep_teal_500"
+            android:freezesText="true"
+            android:gravity="center"
             android:padding="10dp"
-            android:freezesText="true" />
+            android:text="@string/result"
+            android:textColor="@android:color/white"
+            android:textSize="40sp" />
 
         <ibs.ctdm.testretrofit.customview.MyLevelTextView
             android:id="@+id/tvResult"
-            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Data uncompleted"
-            android:gravity="center"
             android:background="@color/material_deep_teal_200"
+            android:freezesText="true"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/data_uncompleted"
             android:textColor="@color/material_deep_teal_500"
-            android:freezesText="true" />
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/close" />
 
     </ibs.ctdm.testretrofit.customview.MyLinearLayout>
 
