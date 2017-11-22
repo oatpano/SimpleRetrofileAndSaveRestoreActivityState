@@ -1,15 +1,16 @@
 package ibs.ctdm.testretrofit.task.network;
 
-import com.squareup.okhttp.ResponseBody;
-
 import ibs.ctdm.testretrofit.task.network.api.GitHubService;
-import ibs.ctdm.testretrofit.task.network.callback.onNetworkCallbackListener;
+import ibs.ctdm.testretrofit.task.network.callback.NetworkCallbackListener;
 import ibs.ctdm.testretrofit.task.network.model.User;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by vanirut on 14-Jan-16.
@@ -17,24 +18,23 @@ import retrofit.Retrofit;
 public class NetworkConnectionManager {
 
     public NetworkConnectionManager() {
-
     }
 
-    public void callServer(final onNetworkCallbackListener listener, String username){
-
+    public void callServer(final NetworkCallbackListener listener, String username) {
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.URL_SERVER)
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         GitHubService git = retrofit.create(GitHubService.class);
-        Call call = git.getUser(username);
+        Call<User> call = git.getUser(username);
         call.enqueue(new Callback<User>() {
-
             @Override
-            public void onResponse(Response<User> response, Retrofit retrofit) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 User user = response.body();
-
                 if (user == null) {
                     //404 or the response cannot be converted to User.
                     ResponseBody responseBody = response.errorBody();
@@ -45,16 +45,14 @@ public class NetworkConnectionManager {
                     }
                 } else {
                     //200
-                    listener.onResponse(user, retrofit);
+                    listener.onResponse(user);
                 }
-
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 listener.onFailure(t);
             }
         });
-
     }
 }

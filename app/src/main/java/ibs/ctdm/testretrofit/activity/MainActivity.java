@@ -8,22 +8,19 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.squareup.okhttp.ResponseBody;
-
 import org.parceler.Parcels;
 
 import java.io.IOException;
 
 import ibs.ctdm.testretrofit.R;
 import ibs.ctdm.testretrofit.task.network.NetworkConnectionManager;
-import ibs.ctdm.testretrofit.task.network.callback.onNetworkCallbackListener;
+import ibs.ctdm.testretrofit.task.network.callback.NetworkCallbackListener;
 import ibs.ctdm.testretrofit.task.network.logger.LoggerFactory;
 import ibs.ctdm.testretrofit.task.network.model.User;
-import retrofit.Retrofit;
+import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
+    private static final String TAG = MainActivity.class.getSimpleName();
     public static final String KEY_USER = "KEY_USER";
 
     //view
@@ -32,20 +29,20 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout layoutResult;
     private EditText edUsername;
     private Button btOk;
+    private Button btClose;
     private TextView tvResult;
 
     //Dao
     private User user;
 
-    onNetworkCallbackListener  networkCallbackListener = new onNetworkCallbackListener() {
+    NetworkCallbackListener networkCallbackListener = new NetworkCallbackListener() {
         @Override
-        public void onResponse(User user, Retrofit retrofit) {
+        public void onResponse(User user) {
             //200
-            if (user != null){
+            if (user != null) {
                 setUserData(user);
                 showData();
             }
-
         }
 
         @Override
@@ -58,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
 
         @Override
@@ -85,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    View.OnClickListener onBtCloseClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            showForm();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
 
         initInstance();
 
-        if (savedInstanceState == null){// first running
+        if (savedInstanceState == null) {
+            // first running
             showForm();
-        }
-        else{// running again(such as: configuration change)
+        } else {
+            // running again(such as: configuration change)
             setUserData(user);
             showData();
         }
-
     }
 
     private void callServer() {
@@ -108,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUserData(User user) {
-        if (user != null){
+        if (user != null) {
             this.user = user;
             LoggerFactory.getWftLog(TAG, "user: " + user);
             LoggerFactory.getWftLog(TAG, "user.getName(): " + user.getName());
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             LoggerFactory.getWftLog(TAG, "user.getCompany(): " + user.getCompany());
 
             String data = "Github Name :" + user.getName() +
-                    "\nWebsite :"+user.getWebsite() +
+                    "\nWebsite :" + user.getWebsite() +
                     "\nCompany Name :" + user.getCompany();
 
             setDataToView(data);
@@ -146,16 +149,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initInstance() {
-        layoutForm = (LinearLayout) findViewById(R.id.layoutForm);
-        edUsername = (EditText) findViewById(R.id.edUsername);
-        btOk = (Button) findViewById(R.id.btOk);
+        layoutForm = findViewById(R.id.layoutForm);
+        edUsername = findViewById(R.id.edUsername);
+        btOk = findViewById(R.id.btOk);
 
-        layoutProgress = (LinearLayout) findViewById(R.id.layoutProgress);
+        layoutProgress = findViewById(R.id.layoutProgress);
 
-        layoutResult = (LinearLayout) findViewById(R.id.layoutResult);
-        tvResult = (TextView) findViewById(R.id.tvResult);
+        layoutResult = findViewById(R.id.layoutResult);
+        tvResult = findViewById(R.id.tvResult);
+        btClose = findViewById(R.id.btClose);
 
         btOk.setOnClickListener(onBtOkClickListener);
+        btClose.setOnClickListener(onBtCloseClickListener);
     }
 
     @Override
