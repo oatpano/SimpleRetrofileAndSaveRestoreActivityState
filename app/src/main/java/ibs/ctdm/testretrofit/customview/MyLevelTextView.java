@@ -5,13 +5,13 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 /**
  * Created by vanirut on 14-Jan-16.
  */
-public class MyLevelTextView extends TextView {
+public class MyLevelTextView extends AppCompatTextView {
     private int backgroundResourceId;
 
     public MyLevelTextView(Context context) {
@@ -24,11 +24,6 @@ public class MyLevelTextView extends TextView {
 
     public MyLevelTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public MyLevelTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
