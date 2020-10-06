@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestRetrofit</string>
+    <string name="app_name">TestRetrofit2020</string>
     <string name="loading">Loading...</string>
     <string name="result">Result</string>
     <string name="data_uncompleted">Data uncompleted</string>
