@@ -83,9 +83,9 @@ class MainActivity : AppCompatActivity() {
         if (user != null) {
             this.user = user
             LoggerFactory.getWftLog(TAG, "user: $user")
-            LoggerFactory.getWftLog(TAG, "user.getName(): " + user.name)
-            LoggerFactory.getWftLog(TAG, "user.getWebsite(): " + user.website)
-            LoggerFactory.getWftLog(TAG, "user.getCompany(): " + user.company)
+            LoggerFactory.getWftLog(TAG, "user.getName(): ${user.name}")
+            LoggerFactory.getWftLog(TAG, "user.getWebsite(): ${user.website}")
+            LoggerFactory.getWftLog(TAG, "user.getCompany(): ${user.company}")
 
             val data = "Github Name :" + user.name +
                     "\nWebsite :" + user.website +
